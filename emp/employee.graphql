@@ -1,0 +1,40 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Employee {
+    id: ID!
+    name: String!
+    department: String!
+    joinedDate: String!
+}
+
+type EmployeeResult {
+    success: Boolean!
+    errors: [String]
+    employee: Employee
+}
+
+type EmployeesResult {
+    success: Boolean!
+    errors: [String]
+    employees: [Employee]
+}
+
+type Query {
+    employees: EmployeesResult!
+    employee(employeeId: ID!): EmployeeResult!
+}
+
+type DeleteEmployeeResult {
+    success: Boolean!
+    errors: [String]
+}
+
+type Mutation {
+    createEmployee(name: String!,department: String!,joinedDate: String!): EmployeeResult!
+    deleteEmployee(employeeId: ID!): DeleteEmployeeResult!
+    markEmployee(employeeId: String!): EmployeeResult!
+    updateJoinedDate(employeeId: String, newDate: String!): EmployeeResult!
+}
